@@ -22,10 +22,9 @@ public class UserController {
     private IUserService userService;
 
     @ApiOperation(value = "获取用户信息", notes = "用户管理", httpMethod = "GET")
-    @RequestMapping(value = "{uuid}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<UserDTO> info(@PathVariable String uuid) {
-        System.out.println(uuid);
-        UserDTO info = userService.getUserById(uuid);
+    @RequestMapping(value = "{uid}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<UserDTO> info(@PathVariable int uid) {
+        UserDTO info = userService.getUserById(uid);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
 
