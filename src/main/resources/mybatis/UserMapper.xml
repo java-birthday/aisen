@@ -11,4 +11,11 @@
         from users
         where id = #{uuid}
     </select>
+
+
+    <select id="getUsersByName" resultMap="InfoResult" parameterType="String">
+        select id,username
+        from users
+        where username like #{username}
+    </select>
 </mapper>
