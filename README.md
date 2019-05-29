@@ -22,5 +22,5 @@ spring.datasource.password=your mysql password
 //change ip and port if necessery
 http://127.0.0.1:8086/doc.html  
 //how to config swagger 
-com.birthday.aisen.common.SwaggerConfig
+com.birthday.aisen.config.SwaggerConfig
 ```

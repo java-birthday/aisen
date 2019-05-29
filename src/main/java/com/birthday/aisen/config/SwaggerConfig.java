@@ -1,4 +1,4 @@
-package com.birthday.aisen.common;
+package com.birthday.aisen.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
