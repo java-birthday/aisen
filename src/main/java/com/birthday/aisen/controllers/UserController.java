@@ -23,7 +23,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户信息", notes = "用户管理", httpMethod = "GET")
     @RequestMapping(value = "{uid}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<UserDTO> info(@PathVariable int uid) {
+    public ResponseEntity<UserDTO> info(@PathVariable long uid) {
         UserDTO info = userService.getUserById(uid);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }

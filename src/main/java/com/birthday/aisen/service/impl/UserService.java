@@ -17,7 +17,7 @@ public class UserService implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
-    public UserDTO getUserById(int uid) {
+    public UserDTO getUserById(long uid) {
         UserDTO dto = new UserDTO();
         User entity = userMapper.getUserById(uid);
         BeanUtils.copyProperties(entity, dto);

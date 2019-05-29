@@ -6,7 +6,7 @@
         <result column="id" property="id"/>
         <result column="username" property="username"/>
     </resultMap>
-    <select id="getUserById" resultMap="InfoResult" parameterType="int">
+    <select id="getUserById" resultMap="InfoResult" parameterType="long">
         select id, username
         from users
         where id = #{uid}
