@@ -1,9 +1,9 @@
-package com.birthday.aisen.service;
+package com.birthday.aisen.service.impl;
 
 import com.birthday.aisen.entity.User;
 import com.birthday.aisen.dto.UserDTO;
 import com.birthday.aisen.mapper.UserMapper;
-import com.birthday.aisen.service.impl.IUserService;
+import com.birthday.aisen.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.birthday.aisen.service.impl;
+package com.birthday.aisen.service;
 
 import com.birthday.aisen.dto.UserDTO;
 
