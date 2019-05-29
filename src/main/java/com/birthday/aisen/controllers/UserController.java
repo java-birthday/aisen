@@ -25,9 +25,9 @@ public class UserController {
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/search/{username}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<List<UserDTO>> searchUser(@PathVariable String username) {
-        List<UserDTO> info = userService.getUsersByName(username);
+    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<UserDTO>> searchUser(String q) {
+        List<UserDTO> info = userService.getUsersByName(q);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
 }
