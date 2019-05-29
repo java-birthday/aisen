@@ -24,7 +24,6 @@ public class UserController {
     @ApiOperation(value = "获取用户信息", notes = "用户管理", httpMethod = "GET")
     @RequestMapping(value = "{uuid}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<UserDTO> info(@PathVariable String uuid) {
-        System.out.println(uuid);
         UserDTO info = userService.getUserById(uuid);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }
