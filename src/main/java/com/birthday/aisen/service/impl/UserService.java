@@ -6,6 +6,7 @@ import com.birthday.aisen.mapper.UserMapper;
 import com.birthday.aisen.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,9 +18,15 @@ public class UserService implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
     public UserDTO getUserById(long uid) {
         UserDTO dto = new UserDTO();
         User entity = userMapper.getUserById(uid);
+
+        // test redis
+        redisTemplate.opsForValue().set(String.valueOf(entity.getId()), entity.getUsername());
         BeanUtils.copyProperties(entity, dto);
         return dto;
     }
