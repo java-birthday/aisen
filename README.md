@@ -17,3 +17,10 @@ spring.datasource.url=jdbc:mysql://127.0.0.1:3306/dbname?useUnicode=true&charact
 spring.datasource.username=your mysql username
 spring.datasource.password=your mysql password
 ```
+##  Create api doc.html With swagger
+```
+//change ip and port if necessery
+http://127.0.0.1:8086/doc.html  
+//how to config swagger 
+com.birthday.aisen.common.SwaggerConfig
+```
