@@ -6,16 +6,29 @@
         <result column="id" property="id"/>
         <result column="username" property="username"/>
     </resultMap>
+
+    <resultMap id="FullInfoResult" type="com.birthday.aisen.entity.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
     <select id="getUserById" resultMap="InfoResult" parameterType="long">
         select id, username
-        from users
+        from user
         where id = #{uid}
+    </select>
+
+    <select id="getUserByName" resultMap="FullInfoResult" parameterType="String">
+        select id, username, password
+        from user
+        where username = #{username}
     </select>
 
 
     <select id="getUsersByName" resultMap="InfoResult" parameterType="String">
         select id,username
-        from users
+        from user
         where username like #{username}
     </select>
 </mapper>

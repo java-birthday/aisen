@@ -1,15 +1,21 @@
 package com.birthday.aisen.service.impl;
 
+import com.birthday.aisen.dto.LoginDTO;
 import com.birthday.aisen.entity.User;
 import com.birthday.aisen.dto.UserDTO;
 import com.birthday.aisen.mapper.UserMapper;
 import com.birthday.aisen.service.IUserService;
+import com.birthday.aisen.utils.Token;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -40,5 +46,31 @@ public class UserService implements IUserService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    public LoginDTO login(String username, String password) {
+        LoginDTO dto = new LoginDTO();
+
+        User entity = userMapper.getUserByName(username);
+
+        if (entity == null) {
+            // todo
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        } else {
+            // check password
+            if (!entity.getPassword().equals(DigestUtils.md5Hex(password).toUpperCase())) {
+                // todo
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+            }
+        }
+
+        Token token = new Token();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userId", entity.getId());
+
+        dto.setId(entity.getId());
+        dto.setToken(token.generate(map));
+
+        return dto;
     }
 }
