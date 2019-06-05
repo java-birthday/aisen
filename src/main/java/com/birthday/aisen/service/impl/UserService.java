@@ -13,6 +13,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Component
 public class UserService implements IUserService {
+
+    private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -31,6 +35,7 @@ public class UserService implements IUserService {
         UserDTO dto = new UserDTO();
         User entity = userMapper.getUserById(uid);
 
+        logger.info(entity.toString());
         // test redis
         redisTemplate.opsForValue().set(String.valueOf(entity.getId()), entity.getUsername());
         BeanUtils.copyProperties(entity, dto);
@@ -50,7 +55,6 @@ public class UserService implements IUserService {
 
     public LoginDTO login(String username, String password) {
         LoginDTO dto = new LoginDTO();
-
         User entity = userMapper.getUserByName(username);
 
         if (entity == null) {
